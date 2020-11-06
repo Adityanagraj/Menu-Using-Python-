@@ -1,5 +1,9 @@
 import os
 import getpass
+password=getpass.getpass("Enter your password")
+while password!='lw':
+	print("enter the right password")
+	password=getpass.getpass("Enter your password")
 print("\t\t\t\t WELCOME TO MY MENU")
 os.system("espeak-ng 'Welcome to my menu' ")
 while True:
@@ -23,14 +27,12 @@ while True:
 	press 14 : check the images available in docker
 	press 15 : launch docker container
 	press 16 : dowlaod new docker image  
+        press 17 : to start jenkins
+        press 18 : to stop jenkins
+   
 	""")
 
-	passwd = getpass.getpass("Enter your password")
-
-	if passwd !=  "lw" :
-	 print("password incorrect ....")
-	 exit()
-
+	
 
 	r = input("enter your choice remote/local: ")
 
@@ -74,6 +76,12 @@ while True:
 	  img = input("Enter the image name : ")
 	  ver = input("Enter the version : ")
 	  os.system("docker run -it {}:{}".format(img,ver))
+	 elif int(ch)==17:
+	  os.system("systemctl start jenkins")
+	 elif int(ch)==18:
+	  os.system("systemctl stop jenkins")
+
+		
 
 	 elif int(ch) == 7:
 	  exit()
@@ -115,6 +123,12 @@ while True:
 	  img = input("Enter the image : ")
 	  ver = input("Enter the version : ")
 	  os.system("ssh {} docker run -it {}:{}".format(ip,img,ver))
+	 elif int(ch)==17:
+	  os.system("ssh {} systemctl start jenkins". format(ip))
+	 elif int(ch)==18: 
+	  os.system("ssh {} systemctl stop jenkins". format(ip))
+	 
+		
 
 	 else:
 	  print("not supported")
